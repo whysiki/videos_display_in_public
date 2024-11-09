@@ -1,0 +1,7 @@
+/cache
+/__pycache__
+**/*.pyc
+**/*.pyo
+/videos/YUnlGjVMYVm10q.mp4
+/videos/test_video.mp4
+/static/videos
