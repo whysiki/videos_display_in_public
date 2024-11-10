@@ -32,6 +32,8 @@ def generate_mpeg(video_path: Path) -> bool:
     dash_output_folder.mkdir(parents=True, exist_ok=True)
     command = [
         "ffmpeg",
+        "-loglevel",
+        "error",
         "-i",
         str(video_path.absolute()),  # 输入文件
         # video_path.name,
@@ -65,7 +67,7 @@ def generate_mpeg(video_path: Path) -> bool:
             command,
             cwd=dash_output_folder,  # 设置工作目录
             # capture_output=True,
-            text=True,
+            # text=True,
             check=True,
         )
         # print(result.stdout)
@@ -103,6 +105,8 @@ def generate_thumbnail(video_path: Path) -> bool:
     output_thumb_file_path.parent.mkdir(parents=True, exist_ok=True)
     command = [
         "ffmpeg",
+        "-loglevel",
+        "error",
         "-i",
         str(video_path.absolute()),  # 输入文件
         "-vf",
@@ -117,7 +121,7 @@ def generate_thumbnail(video_path: Path) -> bool:
         result = subprocess.run(
             command,
             # capture_output=True,
-            text=True,
+            # text=True,
             check=True,
             cwd=output_thumb_file_path.parent,
         )
