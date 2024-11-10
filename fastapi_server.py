@@ -26,12 +26,13 @@ static_path = current_path / "static"
 videos_path = current_path / "videos"
 templates_path = current_path / "templates"
 templates = Jinja2Templates(directory=templates_path)
+port = 51231
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await initialize_videos(app)  # 启动时执行 initialize_videos 函数
-    logger.success("Videos initialized")
+    logger.success(f"Videos initialized, serving on http://localhost:{port}")
     yield  # yield 之前的代码在启动时执行，yield 之后的代码在关闭时执行
 
 
@@ -151,7 +152,6 @@ async def index(request: Request):
 if __name__ == "__main__":
     current_file = Path(__file__)
 
-    port = 51231
     # start cmd /k
     command = f"python -m uvicorn {current_file.stem}:app --port {port} --reload --reload-dir {static_path.as_posix()}"
     print(command)

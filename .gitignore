@@ -11,3 +11,8 @@
 **/*.mp4
 **/*.mpd
 /.pytest_cache
+/videos/thumbnails
+**/*/video_dash_output/*
+**/*/thumbnails/*
+**/video_dash_output/*
+**/thumbnails/*
