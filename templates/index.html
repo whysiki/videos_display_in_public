@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MPEG-DASH Demo</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Video List</h1>
+    <div id="videoList">
+        {% for index, (video, dashpath_encryptstr) in enumerate(video_dashpath_encryptstr_dict.items()) %}
+        <div id='video{{ index }}' class='video'>
+            <h2>{{ video.stem }}</h2>
+            <video id="videoPlayer{{ index }}" width="640" height="360" controls>
+                <source src="/dash/{{ dashpath_encryptstr }}/manifest.mpd" type="application/dash+xml">
+            </video>
+            <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+            <script>
+                var url_{{ index }} = "/dash/{{ dashpath_encryptstr }}/manifest.mpd";
+                var player_{{ index }} = dashjs.MediaPlayer().create();
+                player_{{ index }}.initialize(document.querySelector("#videoPlayer{{ index }}"), url_{{ index }}, true);
+            </script>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

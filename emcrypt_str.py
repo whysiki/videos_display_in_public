@@ -7,7 +7,13 @@ import os
 import zlib
 import base64
 
-KEY = os.urandom(32)
+# KEY = os.urandom(32)
+
+# print(KEY)
+
+# pass
+# print(KEY)
+KEY = b")\xa8\xd1u\xb5\xa2\x84:6\\@\x93\x02\x17E\x15\x8c\x93\xae\x88\xc2\x8ds\xc5\xe4\x8cTU\x11\xbb\xd8\x05"
 
 
 # AES-GCM加密函数
