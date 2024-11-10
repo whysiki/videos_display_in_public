@@ -2,7 +2,7 @@ import asyncio
 import pytest
 from pathlib import Path
 import shutil
-from fastapi_server import VideoInfo  # , videos_path
+from fastapi_server import VideoInfo, videos_path
 from generate_mpeg import (
     get_video_dash_output,
     rediect_file_to_base64str_decarator,
@@ -15,9 +15,7 @@ from typing import List
 @pytest.mark.asyncio
 async def test_fastapi_server():
     video_infos: List[VideoInfo] = []
-    test_num = 3
-    videos_path = Path(__file__).parent / "testvideos"
-
+    test_num = 20
     for video_path in videos_path.glob("**/*.mp4"):
         print(video_path)
         video_info = VideoInfo(video_path)

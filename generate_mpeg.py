@@ -47,7 +47,8 @@ def generate_mpeg(video_path: Path) -> bool:
         # "libx264",  # 视频编码器
         "copy",
         "-preset",
-        "fast",  # 编码速度
+        # "fast",  # 编码速度
+        "ultrafast",
         "-c:a",
         "aac",  # 音频编码器
         "-f",
