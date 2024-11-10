@@ -1,55 +1,106 @@
 /* styles.css */
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
 }
 
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  color: #444;
+#home-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
-h2 {
-  color: #555;
+nav {
+  background-color: #282828;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#searchBox {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  border: 2px solid #f0768b;
+}
+
+#navList {
+  list-style: none;
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  display: flex;
+}
+
+#navList li {
+  margin-right: 15px;
+  background-color: gray;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#navList li:hover {
+  background-color: #f0768b;
+}
+
+#navList a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 #videoList {
-  display: flex;
-  /* flex-direction: column; */
-  /* align-items: center; */
   padding: 20px;
 }
 
-#videoList div {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.directory {
   margin-bottom: 20px;
-  padding: 20px;
-  width: 700px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#videoList div:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.video-parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.video {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  width: calc(25% - 40px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.video:hover {
+  transform: scale(1.05);
+}
+
+.video h3 {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.video img {
+  width: 100%;
+  border-radius: 4px;
 }
 
 video {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
   display: block;
-  margin: 0 auto;
-  border-radius: 8px;
 }
-div.video {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-div.video h2 {
-  margin-bottom: 10px;
-  /* align-items: center; */
+
+h2 {
+  font-size: 24px;
+  margin: 20px 0;
+  color: #333;
 }

@@ -1,18 +1,11 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-
-# from cryptography.hazmat.primitives import hashes
-# from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
 import zlib
 import base64
 
 # KEY = os.urandom(32)
 
-# print(KEY)
-
-# pass
-# print(KEY)
 KEY = b")\xa8\xd1u\xb5\xa2\x84:6\\@\x93\x02\x17E\x15\x8c\x93\xae\x88\xc2\x8ds\xc5\xe4\x8cTU\x11\xbb\xd8\x05"
 
 
@@ -65,19 +58,3 @@ def decrypt_str(encrypted_message: str, key=KEY) -> str:
     plain_text = zlib.decompress(decrypted_data).decode()
 
     return plain_text
-
-
-if __name__ == "__main__":
-
-    # 示例
-    # key = os.urandom(32)  # 32字节的密钥（AES-256）
-    plain_text = "This is a secret message that we want to encrypt and keep short."
-
-    # 加密
-    encrypted_message = encrypt_str(plain_text)
-    print(f"Encrypted (Base64): {encrypted_message}")
-
-    # 解密
-    decrypted_text = decrypt_str(encrypted_message)
-    assert decrypted_text == plain_text
-    print(f"Decrypted: {decrypted_text}")

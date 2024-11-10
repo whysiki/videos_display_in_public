@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>MPEG-DASH Demo</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
-    <h1>Video List</h1>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/">
+        <img id="home-icon" src="/static/home2.png" alt="Home" />
+      </a>
+      <input type="text" id="searchBox" placeholder="搜索视频关键字...." />
+    </nav>
+    <ul id="navList">
+      {% for parent_dir in videos_display_dict.keys() %}
+      <li><a href="#{{ parent_dir }}">{{ parent_dir }}</a></li>
+      {% endfor %}
+    </ul>
     <div id="videoList">
-        {% for index, (video, dashpath_encryptstr) in enumerate(video_dashpath_encryptstr_dict.items()) %}
-        <div id='video{{ index }}' class='video'>
-            <h2>{{ video.stem }}</h2>
-            <video id="videoPlayer{{ index }}" width="640" height="360" controls>
-                <source src="/dash/{{ dashpath_encryptstr }}/manifest.mpd" type="application/dash+xml">
-            </video>
-            <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-            <script>
-                var url_{{ index }} = "/dash/{{ dashpath_encryptstr }}/manifest.mpd";
-                var player_{{ index }} = dashjs.MediaPlayer().create();
-                player_{{ index }}.initialize(document.querySelector("#videoPlayer{{ index }}"), url_{{ index }}, true);
-            </script>
+      <div class="directory">
+        {% for parent_dir, videos in videos_display_dict.items() %}
+        <h2 id="{{ parent_dir }}">{{ parent_dir }}</h2>
+        <div class="video-parent">
+          {% for index, (video, video_info) in enumerate(videos.items()) %}
+          <div id="video{{ index }}" class="video">
+            <h3>{{ Path(video).stem }}</h3>
+            <a href="/video/{{ video_info.dashpath_encryptstr }}">
+              <img
+                src="data:image/jpeg;base64,{{ video_info.video_thumbnail_base64str }}"
+                alt="{{ Path(video).stem }}"
+              />
+            </a>
+          </div>
+          {% endfor %}
         </div>
         {% endfor %}
+      </div>
     </div>
-</body>
+    <script>
+      document
+        .getElementById("searchBox")
+        .addEventListener("input", function () {
+          var filter = this.value.toLowerCase();
+          var videos = document.querySelectorAll(".video");
+          videos.forEach(function (video) {
+            var title = video.querySelector("h3").textContent.toLowerCase();
+            if (title.includes(filter)) {
+              video.style.display = "";
+            } else {
+              video.style.display = "none";
+            }
+          });
+        });
+    </script>
+  </body>
 </html>

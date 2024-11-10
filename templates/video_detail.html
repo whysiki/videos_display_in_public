@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <h2>{{ Path(video_path).stem }}</h2>
+    <video id="videoPlayer" controls>
+      <source
+        src="/dash/{{ dashpath_encryptstr }}/manifest.mpd"
+        type="application/dash+xml"
+      />
+    </video>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script>
+      var url = "/dash/{{ dashpath_encryptstr }}/manifest.mpd";
+      var player = dashjs.MediaPlayer().create();
+      player.initialize(document.querySelector("#videoPlayer"), url, true);
+    </script>
+  </body>
+</html>
